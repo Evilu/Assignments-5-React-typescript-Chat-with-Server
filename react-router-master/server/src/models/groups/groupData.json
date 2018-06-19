@@ -1,0 +1,20 @@
+{
+  "group": [
+    {
+      "groupName": "Team rocket",
+      "id": 1
+    },
+    {
+      "groupName": "WTF",
+      "id": 2
+    },
+    {
+      "groupName": "Hatul",
+      "id": 3
+    },
+    {
+      "groupName": "ninja",
+      "id": 4
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "message": {
+    "sessionId": [
+      {
+        "message": "Marhaba",
+        "id": "1",
+        "date": "18/07/18,12:09PM",
+        "sender": "Fullstack"
+      },
+      {
+        "message": "תביא שתיה",
+        "id": "2",
+        "date": "18/07/18,12:09PM",
+        "sender": "Yuval"
+      },
+      {
+        "message": "דבוזין?",
+        "id": "3",
+        "date": "18/07/18,12:10PM",
+        "sender": "Fullstack"
+      },
+      [
+        {
+          "message": "תביא שתיה",
+          "id": "2",
+          "date": "18/07/18,12:09PM",
+          "sender": "Yuval"
+        }
+      ],
+      [
+        {
+          "message": "סטייק בלאפה",
+          "id": "2",
+          "date": "18/07/18,12:09PM",
+          "sender": "Yuval"
+        }
+      ]
+    ]
+  }
+}
