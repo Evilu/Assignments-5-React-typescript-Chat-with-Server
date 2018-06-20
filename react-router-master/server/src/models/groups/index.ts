@@ -51,7 +51,7 @@ class groupData {
                 const groupIndex = this.data.group.findIndex(u => u.id === group.id);
                 this.data.group[groupIndex] = group;
                 this.writeToJson();
-                resolve({status:"ok"});
+                resolve(group);
             }, 500);
         });
     }

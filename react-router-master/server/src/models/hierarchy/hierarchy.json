@@ -1,0 +1,22 @@
+{
+  "hierarchy": [
+    {
+      "childId": "23",
+      "type": "group",
+      "parentid": "51",
+      "type": "group"
+    },
+    {
+      "childid": "87",
+      "type": "group",
+      "parentid": "56",
+      "type": "user"
+    },
+    {
+      "childid": "12",
+      "type": "user",
+      "parentid": "44",
+      "type": "group"
+    }
+  ]
+}
