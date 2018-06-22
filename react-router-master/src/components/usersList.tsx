@@ -1,27 +1,17 @@
 import * as React from 'react';
-import StateStore from '../models/StateStore';
-
-interface IState {
-    users: IUser[]
-}
-
-interface IUser {
-    username: string,
-    password: string
-    age:string
-}
+import StateStore, {IState} from '../models/StateStore';
 
 class UsersList extends React.Component<any, IState> {
     constructor(props: any) {
         super(props);
-        this.state = {users:[]}
+        this.state = {users: []}
     }
 
     async componentDidMount() {
         await this.getUsers()
     }
 
-    public  getUsers = async() => {
+    public getUsers = async () => {
         const users = await StateStore.getInstance().getUsers();
 
         this.setState({users: users})

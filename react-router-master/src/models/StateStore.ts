@@ -57,4 +57,24 @@ class StateStore implements IStateStore {
     }
 }
 
+export interface IState {
+    users: IUser[]
+
+
+}
+export interface IUser {
+    username: string,
+    password: string
+    age:string
+}
+
+export interface Istate2 {
+    groups: IGroup[]
+
+}
+
+export interface IGroup {
+    groupName:string
+}
+
 export default StateStore;
