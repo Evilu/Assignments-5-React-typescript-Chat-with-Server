@@ -1,10 +1,9 @@
 interface IUser {
     username: string,
     password: string,
-    age?:number
+    age?: number
 
 }
-
 
 export {IUser};
 

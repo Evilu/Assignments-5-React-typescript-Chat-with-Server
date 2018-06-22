@@ -1,22 +1,27 @@
-import {messagesDB} from '../models/Messages';
+import {messagesModel} from '../models/Messages';
 import {IMessage} from "../models/Message";
+import groupsApi from "../api/groupsApi";
+import usersApi from "../api/userApi";
+
 interface IStateStore {
-    state: {
-        // users:{name:string, password:string}[],
-    };
+    state: {};
 
     set(key: string, val: any): void
+
     get(key: string): any | null,
-    addMessageToGroup(groupId:string, message:IMessage):any
-    getGroupMessages(groupId:string):any
+
+    addMessageToGroup(groupId: string, message: IMessage): any
+
+    getGroupMessages(groupId: string): any,
+    getGroups():Promise<any[]>
+    getUsers():Promise<any[]>
+
 }
 
 class StateStore implements IStateStore {
-    state: {} = {
-        // users : [{name:'gal',password:'1234'},{name:'shoko',password:'1234'},{name:'moshe',password:'1234'}],
-    };
+    state: {} = {};
 
-    public messagesDB = messagesDB
+    public messagesDB = messagesModel;
 
     set(key: string, val: any) {
         this.state[key] = val;
@@ -26,12 +31,19 @@ class StateStore implements IStateStore {
         return this.state[key] || null;
     }
 
-
-    public addMessageToGroup(groupId:string, message:IMessage) {
+    public addMessageToGroup(groupId: string, message: IMessage) {
         this.messagesDB.addMessageToGroup(groupId, message)
     }
 
-    public getGroupMessages(groupId:string) {
+    public async getGroups (){
+        return await groupsApi.getGroups()
+    }
+
+    public async getUsers (){
+        return await usersApi.getUsers()
+    }
+
+    public getGroupMessages(groupId: string) {
         return this.messagesDB.getGroupMessages(groupId);
     }
 
@@ -41,7 +53,6 @@ class StateStore implements IStateStore {
         if (!StateStore.instance) {
             StateStore.instance = new StateStore();
         }
-
         return StateStore.instance;
     }
 }

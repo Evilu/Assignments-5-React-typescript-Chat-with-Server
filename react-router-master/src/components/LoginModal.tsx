@@ -26,7 +26,7 @@ export default class LoginModal extends React.Component<ILoginModalProps, ILogin
         [alert.allGood]: 'green',
         [alert.credentials]: 'red',
         [alert.locked]: 'red'
-    }
+    };
 
     constructor(props:any) {
         super(props);

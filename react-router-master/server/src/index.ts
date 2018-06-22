@@ -1,6 +1,5 @@
 import * as express from "express";
 import * as cors from "cors";
-
 import userRouter from './routes/users';
 import groupRouter from './routes/groups';
 import messageRouter from './routes/messages';

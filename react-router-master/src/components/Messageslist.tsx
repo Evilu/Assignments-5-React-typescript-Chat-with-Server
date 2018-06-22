@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ChatInput from "./ChatInput";
 import "../App.css";
+
 interface IMessagesListState {
 }
 
@@ -32,6 +33,7 @@ class MessagesList extends React.Component<IMessagesListProps,IMessagesListState
                         </ul>
                     </div>
                     <div className="new-message">
+
                         <ChatInput message={this.props.message} textChangeHandler={this.props.textChangeHandler} submitHandler={this.props.submitHandler} />
                     </div>
                 </div>

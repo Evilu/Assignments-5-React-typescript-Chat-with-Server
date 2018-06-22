@@ -2,40 +2,42 @@ import * as React from 'react';
 import {Iitem} from '../App'
 
 interface Iprops {
-    items:Iitem[],
-    getIDfromElement(element:any):void,
+    items: Iitem[],
+
+    getIDfromElement(element: any): void,
 }
 
 class ChatTree extends React.Component<Iprops> {
-    private ref:any;
-    constructor(props: Iprops){
+    private ref: any;
+
+    constructor(props: Iprops) {
         super(props);
     }
-    componentDidMount(){
+
+    componentDidMount() {
         this.load(this.props.items);
     }
-    render(){
-        return(
-            <ul ref={elem=>this.ref=elem}/>
+
+    render() {
+        return (
+            <ul ref={elem => this.ref = elem}/>
         )
     }
 
-     load(items:Iitem[]) {
+    load(items: Iitem[]) {
 
-         this.clearInner();
 
-         for (const item of items) {
-             const li = this.createLiElementWithName(item, 'root-name');
-             if (item.items) {
-                 this.createChildren(li, item);
-             }
-             this.ref.appendChild(li);
-         }
+        for (const item of items) {
+            const li = this.createLiElementWithName(item, 'root-name');
+            if (item.items) {
+                this.createChildren(li, item);
+            }
+            this.ref.appendChild(li);
+        }
         this.startListening(this.ref);
     }
 
-
-    createChildren(li:HTMLLIElement, item:Iitem) {
+    createChildren(li: HTMLLIElement, item: Iitem) {
         const ul = document.createElement('ul');
         if (item.items) {
             for (const i of item.items) {
@@ -48,7 +50,7 @@ class ChatTree extends React.Component<Iprops> {
                 }
                 const li = this.createLiElementWithName(i, className);
                 ul.appendChild(li);
-                ul.style.display='none';
+                ul.style.display = 'none';
                 if (i.items) {
                     this.createChildren(li, i);
                 }
@@ -58,27 +60,26 @@ class ChatTree extends React.Component<Iprops> {
         li.appendChild(ul);
     }
 
-
-    createLiElementWithName(item:{name:string, id:string, type:string}, className:string) {
+    createLiElementWithName(item: { name: string, id: string, type: string }, className: string) {
         const li = document.createElement('li');
         const a = addNameToElement(item.name, className);
-        a.setAttribute('tabIndex','1');
+        a.setAttribute('tabIndex', '1');
         li.appendChild(a);
 
-        function addNameToElement(name:string, className:string) {
+        function addNameToElement(name: string, className: string) {
             const a = document.createElement('a');
             a.innerText = name;
             a.classList.add(className);
             a.setAttribute("id", item.id);
-            a.setAttribute("type",item.type)
+            a.setAttribute("type", item.type)
             return a;
         }
 
         return li;
     }
 
-     displayNextSibling(ref:any){
-        if(ref){
+    displayNextSibling(ref: any) {
+        if (ref) {
             if (ref.style.display !== "none") {
                 ref.style.display = "none";
             }
@@ -89,38 +90,38 @@ class ChatTree extends React.Component<Iprops> {
         }
     }
 
-
-     startListening(ref:any){
+    startListening(ref: any) {
         this.addClickListener(ref);
         this.toggleOnDoubleClick(ref);
         this.addKeyUpListener(ref);
 
     }
 
-
-
-     addClickListener(ref:any){
-         ref.addEventListener("click", (event:any)=>{
+    addClickListener(ref: any) {
+        ref.addEventListener("click", (event: any) => {
             event.target.focus();
             event.stopPropagation();
             this.props.getIDfromElement(event.target);
-         })
+        })
     }
-     toggleOnDoubleClick(ref:any){
-         ref.addEventListener("dblclick", (event:any)=>{
+
+    toggleOnDoubleClick(ref: any) {
+        ref.addEventListener("dblclick", (event: any) => {
             this.displayNextSibling(event.target.nextElementSibling);
             event.stopPropagation();
         });
     }
-     displayChildren(ref:any) {
-        if (ref.nextElementSibling){
+
+    displayChildren(ref: any) {
+        if (ref.nextElementSibling) {
             ref.nextElementSibling.style.display = 'block';
 
         }
     }
-      hideChildren(ref:any){
-        if (ref.nextElementSibling){
-            if (ref.nextElementSibling.style.display === 'block'){
+
+    hideChildren(ref: any) {
+        if (ref.nextElementSibling) {
+            if (ref.nextElementSibling.style.display === 'block') {
                 ref.nextElementSibling.style.display = 'none'
             }
             else {
@@ -131,93 +132,77 @@ class ChatTree extends React.Component<Iprops> {
         }
     }
 
-
-
-     enterLevel(ref:any) {
-        if(ref.nextElementSibling){
-            this.displayNextSibling (ref.nextElementSibling);
+    enterLevel(ref: any) {
+        if (ref.nextElementSibling) {
+            this.displayNextSibling(ref.nextElementSibling);
         }
     }
 
-
-     dealWithLi(ref:any, keyName:any){
+    dealWithLi(ref: any, keyName: any) {
         const selectedLi = ref.parentElement;
         const allLi = document.querySelectorAll('li');
 
-         const liArray = () => {
+        const liArray = () => {
             const result = [];
-            for(let i = 0; i < allLi.length; i++){
-                if(allLi[i].offsetParent){
+            for (let i = 0; i < allLi.length; i++) {
+                if (allLi[i].offsetParent) {
                     result.push(allLi[i]);
                 }
             }
             return result;
         };
         const caughtLi = liArray();
-        function findIndex (){
+
+        function findIndex() {
             let result;
-            for(let i = 0; i < caughtLi.length; i++){
-                if(caughtLi[i] === selectedLi){
+            for (let i = 0; i < caughtLi.length; i++) {
+                if (caughtLi[i] === selectedLi) {
                     result = i;
                 }
             }
             return result;
         }
-        const index = findIndex();
-        if(index !== undefined && index !== -1){
 
-            if(keyName === 'ArrowDown'){
-                const nextLi=index+1;
-                if( nextLi < caughtLi.length){
-                    if(caughtLi !== null && caughtLi[nextLi] !== null) {
+        const index = findIndex();
+        if (index !== undefined && index !== -1) {
+
+            if (keyName === 'ArrowDown') {
+                const nextLi = index + 1;
+                if (nextLi < caughtLi.length) {
+                    if (caughtLi !== null && caughtLi[nextLi] !== null) {
                         (caughtLi[nextLi].querySelector(":scope>a") as HTMLElement).focus();
                     }
                 }
             }
-            else if(keyName === 'ArrowUp'){
-                if(index){
-                const nextLi=index-1;
-                if(caughtLi[nextLi] && nextLi >= 0){
-                    (caughtLi[nextLi].querySelector(":scope>a") as HTMLElement).focus();
+            else if (keyName === 'ArrowUp') {
+                if (index) {
+                    const nextLi = index - 1;
+                    if (caughtLi[nextLi] && nextLi >= 0) {
+                        (caughtLi[nextLi].querySelector(":scope>a") as HTMLElement).focus();
+                    }
                 }
-            }}
+            }
         }
     }
 
-
-
-    addKeyUpListener(ref:any) {
-        ref.addEventListener('keyup',(event:any)=> {
-            if (event.key === 'ArrowRight'){
+    addKeyUpListener(ref: any) {
+        ref.addEventListener('keyup', (event: any) => {
+            if (event.key === 'ArrowRight') {
                 this.displayChildren(event.target);
 
             }
-            if (event.key === 'ArrowLeft'){
+            if (event.key === 'ArrowLeft') {
                 this.hideChildren(event.target);
             }
-            if (event.key === 'Enter'){
+            if (event.key === 'Enter') {
                 this.enterLevel(event.target);
             }
-            if(event.key === "ArrowDown" || event.key === "ArrowUp") {
+            if (event.key === "ArrowDown" || event.key === "ArrowUp") {
                 this.dealWithLi(event.target, event.key);
 
             }
         })
     }
-
-
-
-
-
-    clearInner() {
-        if (this.ref.children.length){
-            while (this.ref.children.length){
-                this.ref.children[0].remove();
-            }
-        }
-    }
-
-
 
 }
 

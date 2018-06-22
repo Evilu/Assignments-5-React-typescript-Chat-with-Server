@@ -14,8 +14,6 @@ class ChatInput extends React.Component<IChatInputProps,{}> {
         this.state = { message: '' ,currentMessage:''}
     }
 
-
-
     render() {
         return (
             <div>

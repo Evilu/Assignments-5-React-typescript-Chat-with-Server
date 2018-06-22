@@ -16,7 +16,6 @@ router.post('/', (req, res) => {
         })
 });
 
-
 router.get('/:id', (req, res) => {
     res.send(`User fetched: ${req.params.id}`);
 });

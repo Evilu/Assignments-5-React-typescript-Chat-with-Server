@@ -1,6 +1,5 @@
 import * as express from 'express'
 import {groups} from '../../models/groups'
-import {users} from "../../models/users";
 const router = express.Router();
 
 
@@ -31,6 +30,7 @@ router.delete('/', (req, res) => {
 });
 
 router.put('/', (req, res) => {
+    console.log(req.body)
     groups.updateGroup(req.body)
         .then((groups)=> {
             res.json(groups);
