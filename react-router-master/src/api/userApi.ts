@@ -6,12 +6,12 @@ class UsersApi {
         return await this.get('/users');
     }
 
-    static createUser(user) {
+     createUser(user) {
         return this.post('/users', user);
     }
 
-    static deleteUser(user) {
-        return this.del(`/users/${user.id}`, user);
+    async deleteUser(user) {
+        return await this.del(`/users/${user.id}`, user);
 
     }
 
@@ -24,7 +24,7 @@ class UsersApi {
             .then(res => res.json());
     }
 
-    static post(url, body) {
+     post(url, body) {
         return fetch(baseUrl + url, {
             method: 'POST',
             body: JSON.stringify(body),
@@ -35,13 +35,16 @@ class UsersApi {
             .then(res => res.json());
     }
 
-    static del(url, body) {
+     del(url, body) {
         return fetch(baseUrl + url, {
-            method: 'DELETE'
+            method: 'DELETE',
+            body: JSON.stringify(body),
+            headers: {
+                'Content-Type': 'application/json'
+            }
         })
-            .then((res) => {
-                return res.json()
-            });
+            .then(res => res.json());
+
     }
 
     static put(url, body) {

@@ -22,8 +22,8 @@ router.get ('/:id', (req,res) => {
 
 });
 
-router.delete('/', (req, res) => {
-    groups.deleteGroup(req.body)
+router.delete('/:id', (req, res) => {
+    groups.deleteGroup(req.params.id)
         .then((groups)=> {
             res.json(groups);
         })

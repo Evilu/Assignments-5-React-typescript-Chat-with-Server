@@ -20,8 +20,8 @@ router.get('/:id', (req, res) => {
     res.send(`User fetched: ${req.params.id}`);
 });
 
-router.delete('/', (req, res) => {
-    users.deleteUser(req.body)
+router.delete('/:id', (req, res) => {
+    users.deleteUser(req.params.id)
         .then((users)=> {
             res.json(users);
         })

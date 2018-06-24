@@ -38,7 +38,7 @@ class groupData {
         return new Promise((resolve) => {
             setTimeout(() => {
                 const groupIndex = this.data.group.findIndex(g => g.id == groupId);
-                this.data.group.splice(groupIndex,1)
+                this.data.group.splice(groupIndex,1);
                 this.writeToJson();
                 resolve({status:"ok"});
             }, 500);

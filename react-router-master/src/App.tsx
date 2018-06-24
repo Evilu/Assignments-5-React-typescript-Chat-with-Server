@@ -8,7 +8,8 @@ import LoginModal from "./components/LoginModal";
 import {Redirect, Switch} from "react-router";
 import StateStore from "./models/StateStore";
 import {Message} from "./models/Message";
-import UsersList from "./components/usersList";
+import GroupList from "./components/GroupList";
+// import UsersList from "./components/usersList";
 
 
 export enum alert {
@@ -169,7 +170,7 @@ class App extends React.Component<{}, IAppstate> {
     public appRender = () => (
         <div className='main'>
             <div className="main-left">
-                <span className="sidebar"><ChatTree getIDfromElement={this.getIDfromElement} items={this.state.items}/><UsersList/></span>
+                <span className="sidebar"><ChatTree getIDfromElement={this.getIDfromElement} items={this.state.items}/><GroupList/></span>
 
             </div>
             <div className="main-right">
@@ -180,6 +181,7 @@ class App extends React.Component<{}, IAppstate> {
 
     public loginRender = () => (this.state.approveUser ? <Redirect to={{pathname: '/chat'}}/> :
         <LoginModal loginStatus={this.state.alert} onSubmit={this.onLoginSubmitHandler}/>);
+
 
     render() {
         return (

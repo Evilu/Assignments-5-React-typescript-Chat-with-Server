@@ -4,6 +4,15 @@
     "exclude": [
       "config/**/*.js",
       "node_modules/**/*.ts"
+
     ]
-  }
+
+  },
+
+"rules": {
+"jsx-no-lambda": false,
+"jsx-wrap-multiline": false,
+"jsx-no-multiline-js":false,
+"jsx-alignment":false
+}
 }

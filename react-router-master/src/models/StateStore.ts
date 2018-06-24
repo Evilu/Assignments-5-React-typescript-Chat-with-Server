@@ -15,6 +15,7 @@ interface IStateStore {
     getGroupMessages(groupId: string): any,
     getGroups():Promise<any[]>
     getUsers():Promise<any[]>
+    // deleteUser():Promise<any>
 
 }
 
@@ -42,6 +43,9 @@ class StateStore implements IStateStore {
     public async getUsers (){
         return await usersApi.getUsers()
     }
+    // public async deleteUser(){
+    //     return await usersApi.deleteUser
+    // }
 
     public getGroupMessages(groupId: string) {
         return this.messagesDB.getGroupMessages(groupId);
@@ -57,7 +61,7 @@ class StateStore implements IStateStore {
     }
 }
 
-export interface IState {
+export interface UserListState {
     users: IUser[]
 
 
@@ -68,7 +72,7 @@ export interface IUser {
     age:string
 }
 
-export interface Istate2 {
+export interface GroupListState {
     groups: IGroup[]
 
 }

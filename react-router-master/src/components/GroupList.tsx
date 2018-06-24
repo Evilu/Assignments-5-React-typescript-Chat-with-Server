@@ -1,7 +1,8 @@
 import * as React from 'react';
-import StateStore, {Istate2} from '../models/StateStore';
+import StateStore, {GroupListState} from '../models/StateStore';
+import GroupsApi from "../api/groupsApi";
 
-class GroupList extends React.Component<any, Istate2> {
+class GroupList extends React.Component<any, GroupListState> {
     constructor(props: any) {
         super(props);
         this.state = {groups: []}
@@ -17,11 +18,26 @@ class GroupList extends React.Component<any, Istate2> {
         this.setState({groups: groups})
     };
 
+    onGroupDeleteHandler = (group)=>{
+        GroupsApi.deleteGroup (group)
+            .then(() => {
+                GroupsApi.getGroups()
+                    .then((groups) => {
+                        this.setState((prevState) => ({
+                            groups: groups
+                        }));
+
+
+                    });
+            })
+    };
+
+
     render() {
         this.state
 
         const list = this.state.groups.map((group, index) => {
-            return <li key={index}>{group.groupName}</li>
+            return <li key={index}>{group.groupName} <button onClick={(e)=>{this.onGroupDeleteHandler(group)}}>delete</button></li>
         });
         return (
             <ul>{list}</ul>
