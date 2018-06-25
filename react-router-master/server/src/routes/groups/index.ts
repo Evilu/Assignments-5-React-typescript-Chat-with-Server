@@ -29,8 +29,7 @@ router.delete('/:id', (req, res) => {
         })
 });
 
-router.put('/', (req, res) => {
-    console.log(req.body)
+router.patch('/', (req, res) => {
     groups.updateGroup(req.body)
         .then((groups)=> {
             res.json(groups);

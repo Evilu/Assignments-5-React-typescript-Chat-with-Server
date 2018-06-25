@@ -9,6 +9,7 @@ import {Redirect, Switch} from "react-router";
 import StateStore from "./models/StateStore";
 import {Message} from "./models/Message";
 import GroupList from "./components/GroupList";
+import UsersList from "./components/usersList";
 // import UsersList from "./components/usersList";
 
 
@@ -170,7 +171,7 @@ class App extends React.Component<{}, IAppstate> {
     public appRender = () => (
         <div className='main'>
             <div className="main-left">
-                <span className="sidebar"><ChatTree getIDfromElement={this.getIDfromElement} items={this.state.items}/><GroupList/></span>
+                <span className="sidebar"><ChatTree getIDfromElement={this.getIDfromElement} items={this.state.items}/></span>
 
             </div>
             <div className="main-right">
@@ -187,6 +188,7 @@ class App extends React.Component<{}, IAppstate> {
         return (
             <div className="App">
                 <Route path='/login' render={this.loginRender}/>
+
                 <nav className="nav">
                     <div className="nav-left">
                         <div className='gbText'>
@@ -195,8 +197,13 @@ class App extends React.Component<{}, IAppstate> {
                         <Link to='/login'>
                             <button className='loginBtn'>Login</button>
                         </Link>
+                        <button className='register'>Register</button>
+                        <Link to='/Userlist' >
                         <button className='userBtn'>Manage users</button>
+                        </Link>
+                        <Link to='/Grouplist' >
                         <button className='groupBtn'>Manage groups</button>
+                        </Link>
                         <div hidden={!this.state.loggedInUser}>
                             {this.state.loggedInUser ? this.state.loggedInUser!.username : ""}
                         </div>
@@ -204,8 +211,10 @@ class App extends React.Component<{}, IAppstate> {
                 </nav>
                 <div className="chat">
                     <Switch>
-                        <Route path='/' render={this.appRender}/>
-                        <Route path='/chat' render={this.appRender}/>
+                        <Route exact={true} path='/' render={this.appRender}/>
+                        <Route exact={true} path='/chat' render={this.appRender}/>
+                        <Route exact={true} path='/Userlist' component={UsersList}/>
+                        <Route exact={true} path='/Grouplist' component={GroupList}/>
                     </Switch>
                 </div>
             </div>

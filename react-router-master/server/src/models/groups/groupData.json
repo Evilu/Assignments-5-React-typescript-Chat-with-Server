@@ -1,1 +1,12 @@
-{"group":[{"groupName":"GreatGuys","id":1},{"groupName":"WTF","id":2},{"groupName":"shimon","id":3},{"groupName":"testgroup","id":4},{"groupName":"yepi","id":7}]}
+{
+  "group": [
+    {
+      "groupName": "ROOT",
+      "id": 1
+    },
+    {
+      "groupName": "test3993",
+      "id": 9
+    }
+  ]
+}

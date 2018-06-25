@@ -1,13 +1,9 @@
 import * as express from 'express';
 import {users}  from '../../models/users'
+import usersController from '../../../usersController';
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    users.getUsers()
-        .then((users)=>{
-            res.json(users);
-        })
-});
+router.get('/', usersController.getAllUsers)
 
 router.post('/', (req, res) => {
     users.createUser(req.body)

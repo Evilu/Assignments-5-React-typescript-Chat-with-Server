@@ -1,22 +1,16 @@
 {
   "user": [
     {
-      "username": "Ugi",
+      "username": "lkjflkjfdsfds",
       "password": "sdfffdsa",
       "age": 31,
-      "id": 1
+      "id": 2
     },
     {
-      "username": "Roger",
-      "password": "jr324r3m",
-      "age": 45,
+      "username": "43432432",
+      "password": "sdfffdsa",
+      "age": 31,
       "id": 3
-    },
-    {
-      "username": "Jason",
-      "password": "fsdfaf",
-      "age": 11,
-      "id": 5
     }
   ]
 }

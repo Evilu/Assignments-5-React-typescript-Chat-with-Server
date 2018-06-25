@@ -3,17 +3,14 @@
     {
       "childId": "23",
       "parentid": "51",
-      "type": "user"
     },
     {
       "childid": "87",
       "parentid": "56",
-      "type": "group"
     },
     {
       "childid": "12",
       "parentid": "44",
-      "type": "group"
     }
   ]
 }
