@@ -1,16 +1,11 @@
 {
-  "hierarchy": [
+  "GroupsToGroups": [
     {
-      "childId": "76",
-      "parentid": "12"
+      "1":[9,10]
     },
     {
-      "childid": "43",
-      "parentid": "22"
-    },
-    {
-      "childid": "96",
-      "parentid": "45"
+      "10":[11,12]
     }
+
   ]
-}
+};

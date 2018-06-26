@@ -1,6 +1,7 @@
 import * as React from 'react';
 import StateStore, {GroupListState} from '../models/StateStore';
 import GroupsApi from "../api/groupsApi";
+import {Link} from "react-router-dom"
 
 class GroupList extends React.Component<any, GroupListState> {
     constructor(props: any) {
@@ -40,7 +41,10 @@ class GroupList extends React.Component<any, GroupListState> {
             return <li key={index}>{group.groupName} <button onClick={(e)=>{this.onGroupDeleteHandler(group)}}>delete</button></li>
         });
         return (
+            <div>
+                <Link to='/'><button className='login-X'>X</button></Link>
             <ul>{list}</ul>
+            </div>
         )
     }
 }

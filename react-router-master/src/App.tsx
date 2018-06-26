@@ -10,7 +10,8 @@ import StateStore from "./models/StateStore";
 import {Message} from "./models/Message";
 import GroupList from "./components/GroupList";
 import UsersList from "./components/usersList";
-// import UsersList from "./components/usersList";
+import SignUp from "./components/SignUp";
+
 
 
 export enum alert {
@@ -69,6 +70,21 @@ class App extends React.Component<{}, IAppstate> {
                             "id": "2",
                             "name": "Best Friends",
                             "items": [
+                                {
+                                    "type": "group",
+                                    "id": "11",
+                                    "name": "Bike Fans",
+                                    "items": [
+                                        {
+                                            "type": "user",
+                                            "id": "12",
+                                            "name": "Eric"
+                                        }
+
+                                    ]
+
+                                },
+
                                 {
                                     "type": "user",
                                     "id": "4",
@@ -188,7 +204,6 @@ class App extends React.Component<{}, IAppstate> {
         return (
             <div className="App">
                 <Route path='/login' render={this.loginRender}/>
-
                 <nav className="nav">
                     <div className="nav-left">
                         <div className='gbText'>
@@ -197,11 +212,13 @@ class App extends React.Component<{}, IAppstate> {
                         <Link to='/login'>
                             <button className='loginBtn'>Login</button>
                         </Link>
+                        <Link to='/SignUp'>
                         <button className='register'>Register</button>
+                        </Link>
                         <Link to='/Userlist' >
                         <button className='userBtn'>Manage users</button>
                         </Link>
-                        <Link to='/Grouplist' >
+                        <Link to='/Grouplist'>
                         <button className='groupBtn'>Manage groups</button>
                         </Link>
                         <div hidden={!this.state.loggedInUser}>
@@ -215,6 +232,7 @@ class App extends React.Component<{}, IAppstate> {
                         <Route exact={true} path='/chat' render={this.appRender}/>
                         <Route exact={true} path='/Userlist' component={UsersList}/>
                         <Route exact={true} path='/Grouplist' component={GroupList}/>
+                        <Route exact={true} path='/SignUp' component={SignUp}/>
                     </Switch>
                 </div>
             </div>

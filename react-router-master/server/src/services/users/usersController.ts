@@ -1,4 +1,4 @@
-import {users} from "./src/models/users";
+import {users} from "../../models/users/index";
 
 class UsersController {
     getAllUsers(req, res){

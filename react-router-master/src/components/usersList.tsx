@@ -1,6 +1,7 @@
 import * as React from 'react';
 import StateStore, {UserListState} from '../models/StateStore';
 import UsersApi from '../api/userApi'
+import {Link} from 'react-router-dom'
 class UsersList extends React.Component<any, UserListState> {
     constructor(props: any) {
         super(props);
@@ -38,7 +39,10 @@ class UsersList extends React.Component<any, UserListState> {
             return <li key={index}>{user.username} age:{user.age} <button onClick={(e)=>{this.onUserDeleteHandler(user)}}>delete</button></li>
         });
         return (
+            <div>
+                <Link to='/'><button className='login-X'>X</button></Link>
             <ul>{list}</ul>
+                </div>
         )
     }
 }

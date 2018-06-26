@@ -1,16 +1,10 @@
 {
-  "hierarchy": [
+  "GroupsToUsers": [
     {
-      "childId": "23",
-      "parentid": "51",
+      "11":[2]
     },
     {
-      "childid": "87",
-      "parentid": "56",
-    },
-    {
-      "childid": "12",
-      "parentid": "44",
+      "10":[3,4]
     }
   ]
 }

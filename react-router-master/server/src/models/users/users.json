@@ -1,16 +1,1 @@
-{
-  "user": [
-    {
-      "username": "lkjflkjfdsfds",
-      "password": "sdfffdsa",
-      "age": 31,
-      "id": 2
-    },
-    {
-      "username": "43432432",
-      "password": "sdfffdsa",
-      "age": 31,
-      "id": 3
-    }
-  ]
-}
+{"user":[{"username":"StrongGoose","password":"sdfffdsa","age":31,"id":2},{"username":"yoske","password":"sdfffdsa","age":31,"id":4}]}

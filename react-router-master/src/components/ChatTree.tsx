@@ -24,7 +24,7 @@ class ChatTree extends React.Component<Iprops> {
         )
     }
 
-    load(items: Iitem[]) {
+    load(items: Iitem[]) {//(import from server
 
 
         for (const item of items) {
