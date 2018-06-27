@@ -6,8 +6,9 @@ class UsersApi {
         return await this.get('/users');
     }
 
-     createUser(user) {
-        return this.post('/users', user);
+     async createUser(user) {
+        debugger;
+        return await this.post('/users', user);
     }
 
     async deleteUser(user) {

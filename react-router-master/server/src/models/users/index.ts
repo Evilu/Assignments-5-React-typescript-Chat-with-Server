@@ -23,37 +23,25 @@ class userDataModel {
         });
     }
 
-    createUser(user) {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                user.id = this.data.user[this.data.user.length - 1].id + 1;
-                this.data.user.push(user);
-                this.writeToJson();
-                resolve(user);
-            }, 500);
-        });
-    }
+   async createUser(user) {
+       user.id = this.data.user[this.data.user.length - 1].id + 1;
+       this.data.user.push(user);
+       this.writeToJson();
+       return user
+   };
 
-    deleteUser(userId) {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                const userIndex = this.data.user.findIndex(u => u.id == userId);
-                this.data.user.splice(userIndex,1);
-                this.writeToJson();
-                resolve({status:"ok"});
-            }, 500);
-        });
-    }
 
-    updateUser(user) {
-        return new Promise((resolve) => {
-            setTimeout(() => {
+    async deleteUser(userId) {
+        const userIndex = this.data.user.findIndex(u => u.id == userId);
+        this.data.user.splice(userIndex,1);
+        this.writeToJson();
+        return userId
+    };
+
+    async updateUser(user) {
                 const userIndex = this.data.user.findIndex(u => u.id === user.id);
                 this.data.user[userIndex] = user;
                 this.writeToJson();
-                resolve({status:"ok"});
-            }, 500);
-        });
     }
 
 

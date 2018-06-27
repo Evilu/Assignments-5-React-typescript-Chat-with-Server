@@ -10,8 +10,8 @@ import StateStore from "./models/StateStore";
 import {Message} from "./models/Message";
 import GroupList from "./components/GroupList";
 import UsersList from "./components/usersList";
-import SignUp from "./components/SignUp";
-
+import UserSignUp from "./components/UserSignUp";
+import GroupSignUp from './components/GroupSignUp';
 
 
 export enum alert {
@@ -212,8 +212,11 @@ class App extends React.Component<{}, IAppstate> {
                         <Link to='/login'>
                             <button className='loginBtn'>Login</button>
                         </Link>
-                        <Link to='/SignUp'>
-                        <button className='register'>Register</button>
+                        <Link to='/userSignUp'>
+                        <button className='userRegister'>Register new user</button>
+                        </Link>
+                        <Link to='/groupSignUp'>
+                            <button className='groupRegister'>Register new group</button>
                         </Link>
                         <Link to='/Userlist' >
                         <button className='userBtn'>Manage users</button>
@@ -232,7 +235,8 @@ class App extends React.Component<{}, IAppstate> {
                         <Route exact={true} path='/chat' render={this.appRender}/>
                         <Route exact={true} path='/Userlist' component={UsersList}/>
                         <Route exact={true} path='/Grouplist' component={GroupList}/>
-                        <Route exact={true} path='/SignUp' component={SignUp}/>
+                        <Route exact={true} path='/userSignUp' component={UserSignUp}/>
+                        <Route exact={true} path='/groupSignUp' component={GroupSignUp}/>
                     </Switch>
                 </div>
             </div>
