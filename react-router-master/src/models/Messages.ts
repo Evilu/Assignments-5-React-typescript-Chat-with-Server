@@ -19,7 +19,20 @@ class MessagesModel {
         return this.messages[groupId]
     }
 
+    public addMessageToUser(usersId: string, message: IMessage) {
+        if (this.messages[usersId]) {
+            this.messages[usersId].push(message)
+        } else {
+            this.messages[usersId] = [message];
+        }
+    }
+
+    public getUserMessages(usersId: string) {
+        return this.messages[usersId]
+    }
+
 }
+
 
 
 

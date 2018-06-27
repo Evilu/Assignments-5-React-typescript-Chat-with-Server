@@ -26,7 +26,7 @@ class userDataModel {
    async createUser(user) {
        user.id = this.data.user[this.data.user.length - 1].id + 1;
        this.data.user.push(user);
-       this.writeToJson();
+       await this.writeToJson();
        return user
    };
 
@@ -34,14 +34,15 @@ class userDataModel {
     async deleteUser(userId) {
         const userIndex = this.data.user.findIndex(u => u.id == userId);
         this.data.user.splice(userIndex,1);
-        this.writeToJson();
+        await this.writeToJson();
         return userId
     };
 
     async updateUser(user) {
-                const userIndex = this.data.user.findIndex(u => u.id === user.id);
-                this.data.user[userIndex] = user;
-                this.writeToJson();
+        const userIndex = this.data.user.findIndex(u => u.id === user.id);
+        this.data.user[userIndex] = user;
+        await this.writeToJson();
+        return user
     }
 
 

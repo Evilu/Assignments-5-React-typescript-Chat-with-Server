@@ -25,40 +25,32 @@ class groupData {
 
 
 
-    createGroup(group) {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                group.id = this.data.group[this.data.group.length - 1].id + 1;
-                this.data.group.push(group);
-                this.writeToJson();
-                resolve(group);
-            }, 500);
-        });
-    }
+    async createGroup(group) {
+        group.id = this.data.group[this.data.group.length - 1].id + 1;
+        this.data.group.push(group);
+       await this.writeToJson();
+       return group
+        };
 
 
 
-    deleteGroup(groupId) {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                const groupIndex = this.data.group.findIndex(g => g.id == groupId);
-                this.data.group.splice(groupIndex,1);
-                this.writeToJson();
-                resolve({status:"ok"});
-            }, 500);
-        });
-    }
 
-    updateGroup(group) {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                const groupIndex = this.data.group.findIndex(u => u.id === group.id);
-                this.data.group[groupIndex] = group;
-                this.writeToJson();
-                resolve(group);
-            }, 500);
-        });
-    }
+
+    async deleteGroup(groupId) {
+        const groupIndex = this.data.group.findIndex(g => g.id == groupId);
+        this.data.group.splice(groupIndex,1);
+        await this.writeToJson();
+        return groupId
+        };
+
+
+
+    async updateGroup(group) {
+        const groupIndex = this.data.group.findIndex(u => u.id === group.id);
+        this.data.group[groupIndex] = group;
+        await this.writeToJson();
+        return group
+    };
 
 
 }

@@ -27,6 +27,7 @@ interface IAppstate {
     items: Iitem[],
     list?: string[],
     loggedInUser: IUser | null,
+    loggedInGroup: IUser | null,
     alert: alert,
     counter: number,
     approveUser: boolean,
@@ -51,6 +52,7 @@ class App extends React.Component<{}, IAppstate> {
         super(props);
         this.state = {
             loggedInUser: null,
+            loggedInGroup: null,
             alert: alert.none,
             counter: 0,
             approveUser: false,
@@ -147,6 +149,7 @@ class App extends React.Component<{}, IAppstate> {
         if (this.auth(user)) {
             this.setState({
                 loggedInUser: user,
+                loggedInGroup: user,
                 alert: alert.allGood,
                 approveUser: true
             })
@@ -175,6 +178,12 @@ class App extends React.Component<{}, IAppstate> {
             console.log(this.state.loggedInUser);
             StateStore.getInstance().addMessageToGroup(this.state.selected!.id, new Message(this.state.message, new Date().toLocaleTimeString(), this.state.loggedInUser!.username));
             const newList = StateStore.getInstance().getGroupMessages(this.state.selected!.id);
+            this.setState({message: '', list: newList})
+        }
+        if (this.state.loggedInUser && this.state.selected && this.state.selected!.type === 'user') {
+            console.log(this.state.loggedInGroup);
+            StateStore.getInstance().addMessageToUser(this.state.selected!.id, new Message(this.state.message, new Date().toLocaleTimeString(), this.state.loggedInUser!.username));
+            const newList = StateStore.getInstance().getUserMessages(this.state.selected!.id);
             this.setState({message: '', list: newList})
         }
 

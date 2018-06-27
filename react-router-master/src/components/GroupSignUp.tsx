@@ -12,16 +12,16 @@ interface IGroupSignUpState {
 
 class GroupSignUp extends React.Component<IgroupSignUpProps, IGroupSignUpState> {
     public groupName;
+
     constructor(props: IgroupSignUpProps) {
         super(props);
         this.groupName = React.createRef();
     }
 
-
-    onGroupSignHandler = ()=>{
+    onGroupSignHandler = () => {
         const groupName = this.groupName.current.value;
 
-        GroupsApi.createGroup ({groupName})
+        GroupsApi.createGroup({groupName})
             .then(() => {
                 GroupsApi.getGroups()
                     .then((groups) => {
@@ -36,17 +36,15 @@ class GroupSignUp extends React.Component<IgroupSignUpProps, IGroupSignUpState> 
 
     render() {
         return (
-            <>
-                <div>
-                    <Link to='/'>
-                        <button className='login-X'>X</button>
-                    </Link>
-                    <form onSubmit={this.onGroupSignHandler}>
-                        <label>New group name:</label><input  ref={this.groupName} type="group" name="group"/>
-                        <input type="submit" value="submit"/>
-                    </form>
-                </div>
-            </>
+            <div>
+                <Link to='/'>
+                    <button className='login-X'>X</button>
+                </Link>
+                <form onSubmit={this.onGroupSignHandler}>
+                    <label>New group name:</label><input ref={this.groupName} type="group" name="group"/>
+                    <input type="submit" value="submit"/>
+                </form>
+            </div>
         )
     }
 

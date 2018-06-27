@@ -7,7 +7,6 @@ class UsersApi {
     }
 
      async createUser(user) {
-        debugger;
         return await this.post('/users', user);
     }
 

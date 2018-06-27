@@ -13,9 +13,14 @@ interface IStateStore {
     addMessageToGroup(groupId: string, message: IMessage): any
 
     getGroupMessages(groupId: string): any,
-    getGroups():Promise<any[]>
-    getUsers():Promise<any[]>
-    // deleteUser():Promise<any>
+
+    addMessageToUser(groupId: string, message: IMessage): any
+
+    getUserMessages(groupId: string): any,
+
+    getGroups(): Promise<any[]>
+
+    getUsers(): Promise<any[]>
 
 }
 
@@ -36,19 +41,25 @@ class StateStore implements IStateStore {
         this.messagesDB.addMessageToGroup(groupId, message)
     }
 
-    public async getGroups (){
+    public addMessageToUser(userId: string, message: IMessage) {
+        this.messagesDB.addMessageToUser(userId, message)
+    }
+
+    public async getGroups() {
         return await groupsApi.getGroups()
     }
 
-    public async getUsers (){
+    public async getUsers() {
         return await usersApi.getUsers()
     }
-    // public async deleteUser(){
-    //     return await usersApi.deleteUser
-    // }
+
 
     public getGroupMessages(groupId: string) {
         return this.messagesDB.getGroupMessages(groupId);
+    }
+
+    public getUserMessages(userId: string) {
+        return this.messagesDB.getUserMessages(userId);
     }
 
     static instance: IStateStore;
@@ -66,10 +77,11 @@ export interface UserListState {
 
 
 }
+
 export interface IUser {
     username: string,
     password: string
-    age:string
+    age: string
 }
 
 export interface GroupListState {
@@ -78,7 +90,7 @@ export interface GroupListState {
 }
 
 export interface IGroup {
-    groupName:string
+    groupName: string
 }
 
 export default StateStore;
