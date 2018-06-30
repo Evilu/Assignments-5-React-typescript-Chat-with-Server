@@ -14,6 +14,7 @@ import UserSignUp from "./components/UserSignUp";
 import GroupSignUp from './components/GroupSignUp';
 
 
+
 export enum alert {
     none,
     allGood,
@@ -32,6 +33,8 @@ interface IAppstate {
     counter: number,
     approveUser: boolean,
     selected?: { id: string, type: string }
+
+
 
 
 }
@@ -175,13 +178,11 @@ class App extends React.Component<{}, IAppstate> {
     public submitHandler = (event: any) => {
         event.preventDefault();
         if (this.state.loggedInUser && this.state.selected && this.state.selected!.type === 'group') {
-            console.log(this.state.loggedInUser);
             StateStore.getInstance().addMessageToGroup(this.state.selected!.id, new Message(this.state.message, new Date().toLocaleTimeString(), this.state.loggedInUser!.username));
             const newList = StateStore.getInstance().getGroupMessages(this.state.selected!.id);
             this.setState({message: '', list: newList})
         }
         if (this.state.loggedInUser && this.state.selected && this.state.selected!.type === 'user') {
-            console.log(this.state.loggedInGroup);
             StateStore.getInstance().addMessageToUser(this.state.selected!.id, new Message(this.state.message, new Date().toLocaleTimeString(), this.state.loggedInUser!.username));
             const newList = StateStore.getInstance().getUserMessages(this.state.selected!.id);
             this.setState({message: '', list: newList})
