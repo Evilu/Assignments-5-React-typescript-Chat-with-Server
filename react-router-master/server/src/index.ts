@@ -3,7 +3,7 @@ import * as cors from "cors";
 import userRouter from './routes/users';
 import groupRouter from './routes/groups';
 import messageRouter from './routes/messages';
-
+import treeRouter from './routes/Tree'
 const serverApp = express();
 
 serverApp.use(express.json());
@@ -16,7 +16,8 @@ serverApp.get ("/", (req,res) => {
 serverApp.use('/users', userRouter);
 serverApp.use('/groups', groupRouter);
 serverApp.use('/messages',messageRouter);
-// serverApp.use('/Tree', )
+serverApp.use('/tree', treeRouter)
+
 
 serverApp.listen(4000, function(){
     console.log('server is running on:' +

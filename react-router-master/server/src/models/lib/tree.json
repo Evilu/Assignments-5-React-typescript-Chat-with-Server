@@ -1,1 +1,61 @@
-{}
+
+[
+  {
+    "type": "group",
+    "id": 1,
+    "name": "ROOT",
+    "items": [
+      {
+        "type": "group",
+        "id": 9,
+        "name": "Family",
+        "items": []
+      },
+      {
+        "type": "group",
+        "id": 10,
+        "name": "BestFriends!",
+        "items": [
+          {
+            "username": "StrongGoose",
+            "password": "sdff12fdsa",
+            "age": 31,
+            "id": 2
+          },
+          {
+            "type": "group",
+            "id": 3,
+            "name": "funHouse",
+            "items": [
+              {
+                "username": "John",
+                "password": "sdjd34fffdsa",
+                "age": 31,
+                "id": 3
+              },
+              {
+                "type": "group",
+                "id": 4,
+                "name": "ZusAndTus",
+                "items": [
+                  {
+                    "username": "Mary",
+                    "password": "sdfffdsa",
+                    "age": 31,
+                    "id": 4
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "id": 14,
+                "name": "TurkishHamam",
+                "items": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

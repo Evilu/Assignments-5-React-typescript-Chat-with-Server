@@ -28,7 +28,3 @@ router.delete('/:id', (req,res) => {
 
 
 export default router
-
-import {tree} from '../../models/Tree'
-
-tree

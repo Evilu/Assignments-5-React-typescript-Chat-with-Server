@@ -47,5 +47,7 @@ class messagesData {
 
 }
 
+import {tree} from "../Tree"
+tree
 export const message = new messagesData();
 
