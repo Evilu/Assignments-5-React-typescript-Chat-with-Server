@@ -38,5 +38,7 @@ class messagesData {
         });
     }
 }
+const Tree_1 = require("../Tree");
+Tree_1.tree;
 exports.message = new messagesData();
 //# sourceMappingURL=index.js.map

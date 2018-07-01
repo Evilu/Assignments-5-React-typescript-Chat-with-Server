@@ -75,7 +75,7 @@ class TreeBuild {
         const data = fs.readFileSync(path.join(baseDir , 'tree.json'));
         return JSON.parse(data.toString());
     }
-    
+
 
      getTree() {
         return new Promise((resolve) => {

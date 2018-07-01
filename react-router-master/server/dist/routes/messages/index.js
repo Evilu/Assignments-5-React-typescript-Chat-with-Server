@@ -22,6 +22,4 @@ router.delete('/:id', (req, res) => {
     res.send(`messages deleted ${req.params.id}`);
 });
 exports.default = router;
-const Tree_1 = require("../../models/Tree");
-Tree_1.tree;
 //# sourceMappingURL=index.js.map
