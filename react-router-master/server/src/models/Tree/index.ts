@@ -16,7 +16,8 @@ class TreeBuild {
         this.createHierarchy = {
             group: this.allJSONSdata.group.reduce((prev, {id, groupName: name, type = 'group'}) =>
                 (Object.assign(prev, {[id]: {type, id, name}})), {}),
-            user: this.allJSONSdata.user.reduce((prev, o) => (Object.assign(prev, {[o.id]: o})), {}),
+            user: this.allJSONSdata.user.reduce((prev, {id, username: name, type = 'user'}) =>
+                (Object.assign(prev, {[id]: {type, id, name}})), {}),
             groups: {
                 groups: Object.assign(
                     this.allJSONSdata.GroupsToGroups.reduce((prev, group) => Object.assign(prev, group), {}),
@@ -27,7 +28,7 @@ class TreeBuild {
         };
 
         this.startPoint = this.findAllNode('root');
-        console.log(JSON.stringify(this.startPoint, null, 4))
+
 
     }
 
@@ -51,9 +52,15 @@ class TreeBuild {
         return JSON.parse(allJSONSdata.toString());
     }
 
-    writeToJson(fileName) {
-        fs.writeFileSync(path.join(baseDir, fileName), JSON.stringify(this.allJSONSdata));
+    writeToJson() {
+        fs.writeFileSync(path.join(baseDir, 'tree.json'), JSON.stringify(this.startPoint, null, 4));
     }
+
+    async createTree(tree) {
+        await this.writeToJson();
+        return tree
+    };
+
 
      findAllNode=(node)=> {
 
@@ -68,6 +75,7 @@ class TreeBuild {
         const data = fs.readFileSync(path.join(baseDir , 'tree.json'));
         return JSON.parse(data.toString());
     }
+    
 
      getTree() {
         return new Promise((resolve) => {

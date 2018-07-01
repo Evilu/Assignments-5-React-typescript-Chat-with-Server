@@ -1,61 +1,52 @@
-
 [
-  {
-    "type": "group",
-    "id": 1,
-    "name": "ROOT",
-    "items": [
-      {
+    {
         "type": "group",
-        "id": 9,
-        "name": "Family",
-        "items": []
-      },
-      {
-        "type": "group",
-        "id": 10,
-        "name": "BestFriends!",
+        "id": 1,
+        "name": "ROOT",
         "items": [
-          {
-            "username": "StrongGoose",
-            "password": "sdff12fdsa",
-            "age": 31,
-            "id": 2
-          },
-          {
-            "type": "group",
-            "id": 3,
-            "name": "funHouse",
-            "items": [
-              {
-                "username": "John",
-                "password": "sdjd34fffdsa",
-                "age": 31,
-                "id": 3
-              },
-              {
+            {
                 "type": "group",
-                "id": 4,
-                "name": "ZusAndTus",
-                "items": [
-                  {
-                    "username": "Mary",
-                    "password": "sdfffdsa",
-                    "age": 31,
-                    "id": 4
-                  }
-                ]
-              },
-              {
-                "type": "group",
-                "id": 14,
-                "name": "TurkishHamam",
+                "id": 9,
+                "name": "test3993",
                 "items": []
-              }
-            ]
-          }
+            },
+            {
+                "type": "group",
+                "id": 10,
+                "name": "BestGroup!",
+                "items": [
+                    {
+                        "type": "group",
+                        "id": 3,
+                        "name": "54oneoneone",
+                        "items": [
+                            {
+                                "type": "user",
+                                "id": 3,
+                                "name": "yosi"
+                            },
+                            {
+                                "type": "group",
+                                "id": 4,
+                                "name": "Ahukim!",
+                                "items": [
+                                    {
+                                        "type": "user",
+                                        "id": 4,
+                                        "name": "yoske fisher"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "id": 14,
+                                "name": "ahalan",
+                                "items": []
+                            }
+                        ]
+                    }
+                ]
+            }
         ]
-      }
-    ]
-  }
+    }
 ]

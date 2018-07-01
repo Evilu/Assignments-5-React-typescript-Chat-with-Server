@@ -12,6 +12,7 @@ import GroupList from "./components/GroupList";
 import UsersList from "./components/usersList";
 import UserSignUp from "./components/UserSignUp";
 import GroupSignUp from './components/GroupSignUp';
+import treeApi from './api/treeApi'
 
 
 
@@ -59,81 +60,14 @@ class App extends React.Component<{}, IAppstate> {
             alert: alert.none,
             counter: 0,
             approveUser: false,
-            items: [
-                {
-                    "type": "group",
-                    "id": "1",
-                    "name": "Friends",
-                    "items": [
-                        {
-                            "type": "user",
-                            "id": "3",
-                            "name": "James"
-                        },
-                        {
-                            "type": "group",
-                            "id": "2",
-                            "name": "Best Friends",
-                            "items": [
-                                {
-                                    "type": "group",
-                                    "id": "11",
-                                    "name": "Bike Fans",
-                                    "items": [
-                                        {
-                                            "type": "user",
-                                            "id": "12",
-                                            "name": "Eric"
-                                        }
-
-                                    ]
-
-                                },
-
-                                {
-                                    "type": "user",
-                                    "id": "4",
-                                    "name": "Ugi"
-                                },
-                                {
-                                    "type": "user",
-                                    "id": "5",
-                                    "name": "Pikachu"
-                                },
-                                {
-                                    "type": "user",
-                                    "id": "6",
-                                    "name": "Ash"
-                                },
-                                {
-                                    "type": "user",
-                                    "id": "7",
-                                    "name": "Trainer"
-                                },
-                                {
-                                    "type": "user",
-                                    "id": "8",
-                                    "name": "Jessie"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "user",
-                    "id": "9",
-                    "name": "Shula"
-                },
-                {
-                    "type": "user",
-                    "id": "10",
-                    "name": "Tikva"
-                }
-            ]
-            ,
+            items: [],
             message: ''
 
         }
+    }
+
+    async componentDidMount(){
+        this.setState({items:await treeApi.getTree()});
     }
 
     auth = (user: IUser): boolean => {

@@ -1,5 +1,6 @@
 import * as express from 'express'
 import {tree} from '../../models/Tree'
+
 const router = express.Router();
 
 router.get ('/', (req, res) => {
@@ -9,5 +10,13 @@ router.get ('/', (req, res) => {
         });
 
 });
+
+router.post ('/', (req, res) => {
+    tree.createTree(tree)
+        .then((groups)=>{
+            res.json(groups);
+        });
+});
+
 //tree
 export default router

@@ -2,26 +2,26 @@
   "message": {
     "sessionId": [
       {
-        "message": "Marhaba",
+        "message": "Hello",
         "id": "1",
         "date": "18/07/18,12:09PM",
         "sender": "Fullstack"
       },
       {
-        "message": "תביא שתיה",
+        "message": "Hi",
         "id": "2",
         "date": "18/07/18,12:09PM",
         "sender": "Yuval"
       },
       {
-        "message": "דבוזין?",
+        "message": "How are you?",
         "id": "3",
         "date": "18/07/18,12:10PM",
         "sender": "Fullstack"
       },
       [
         {
-          "message": "תביא שתיה",
+          "message": "Fine",
           "id": "2",
           "date": "18/07/18,12:09PM",
           "sender": "Yuval"
@@ -29,7 +29,7 @@
       ],
       [
         {
-          "message": "סטייק בלאפה",
+          "message": "COOL",
           "id": "2",
           "date": "18/07/18,12:09PM",
           "sender": "Yuval"
