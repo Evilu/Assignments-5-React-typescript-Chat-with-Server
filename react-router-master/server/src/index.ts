@@ -5,9 +5,10 @@ import userRouter from './routes/users';
 import groupRouter from './routes/groups';
 import messageRouter from './routes/messages';
 import treeRouter from './routes/Tree'
-// import groupToGroupRouter from './routes/GroupsToGroups'
-// import groupToUserRouter from './routes/UsersToGroups'
+import groupToGroupRouter from './routes/GroupsToGroups'
+import groupToUserRouter from './routes/UsersToGroups'
 const serverApp = express();
+
 
 
 serverApp.use(express.json());
@@ -20,6 +21,8 @@ serverApp.use('/users', userRouter);
 serverApp.use('/groups', groupRouter);
 serverApp.use('/messages',messageRouter);
 serverApp.use('/tree', treeRouter);
+serverApp.use('/groupToGroup', groupToGroupRouter);
+serverApp.use('/groupToUserRouter',groupToUserRouter);
 
 
 let server = serverApp.listen(4000, function(){

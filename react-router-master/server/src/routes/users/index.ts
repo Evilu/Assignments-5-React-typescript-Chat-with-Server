@@ -3,12 +3,14 @@ import {users}  from '../../models/users'
 import usersController from '../../services/users/usersController';
 const router = express.Router();
 
-router.get('/', usersController.getAllUsers)
+
+
+router.get('/', usersController.getAllUsers);
 
 router.post('/', (req, res) => {
     users.createUser(req.body)
-        .then((users)=> {
-            res.json(users);
+        .then((users,)=> {
+        res.json(users);
         })
 });
 

@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 
-const baseDir = path.join(__dirname.replace('dist'+path.sep, "src"+path.sep).replace("groupsToUsers", "lib"));
+const baseDir = path.join(__dirname.replace('dist'+path.sep, "src"+path.sep).replace("GroupsToUsers", "lib"));
 
 class groupInUserssData {
     data:any;

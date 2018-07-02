@@ -3,6 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
 const path = require("path");
 const baseDir = path.join(__dirname.replace('dist' + path.sep, "src" + path.sep).replace("users", "lib"));
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 class userDataModel {
     constructor() {
         this.data = this.readFromJson();
@@ -23,9 +25,12 @@ class userDataModel {
     }
     async createUser(user) {
         user.id = this.data.user[this.data.user.length - 1].id + 1;
-        this.data.user.push(user);
-        await this.writeToJson();
-        return user;
+        bcrypt.hash(user.password, saltRounds, async (err, hash) => {
+            user.password = hash;
+            this.data.user.push(user);
+            await this.writeToJson();
+            return { name: user.name, id: user.id, age: user.age };
+        });
     }
     ;
     async deleteUser(userId) {
@@ -43,7 +48,4 @@ class userDataModel {
     }
 }
 exports.users = new userDataModel();
-// import {tree} from "../Tree/index";
-// tree;
-//
 //# sourceMappingURL=index.js.map

@@ -1,7 +1,8 @@
 import * as fs from "fs";
 import * as path from "path";
-
 const baseDir = path.join(__dirname.replace('dist'+path.sep, "src"+path.sep).replace("users", "lib"));
+import * as bcrypt from 'bcrypt';
+const saltRounds = 10;
 
 class userDataModel {
     data:any;
@@ -13,6 +14,8 @@ class userDataModel {
         const data = fs.readFileSync(path.join(baseDir , 'users.json'));
         return JSON.parse(data.toString());
     }
+
+
 
     writeToJson() {
         fs.writeFileSync(baseDir + '/users.json', JSON.stringify(this.data));
@@ -28,9 +31,12 @@ class userDataModel {
 
    async createUser(user) {
        user.id = this.data.user[this.data.user.length - 1].id + 1;
-       this.data.user.push(user);
-       await this.writeToJson();
-       return user
+       bcrypt.hash(user.password, saltRounds, async (err:Error, hash:string) =>{
+           user.password = hash;
+           this.data.user.push(user);
+           await this.writeToJson();
+           return {name:user.name, id:user.id, age:user.age};
+       });
    };
 
 
@@ -53,6 +59,3 @@ class userDataModel {
 
 export const users = new userDataModel();
 
-// import {tree} from "../Tree/index";
-// tree;
-//

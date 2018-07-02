@@ -1,7 +1,6 @@
 import * as React from 'react';
 import UsersApi from "../api/userApi";
 import {Link} from "react-router-dom";
-
 interface ISignUpProps {
 
 }
@@ -39,6 +38,8 @@ class UserSignUp extends React.Component<ISignUpProps, ISignUpState> {
                     });
             })
     };
+
+
 
     render() {
         return (

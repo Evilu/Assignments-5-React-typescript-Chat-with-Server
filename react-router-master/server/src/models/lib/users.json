@@ -17,6 +17,35 @@
       "password": "748903",
       "age": "31",
       "id": 4
+    },
+    {
+      "username": "kukululu",
+      "password": "6511",
+      "age": "31",
+      "id": 5
+    },
+    {
+      "username": "batman",
+      "password": "robin",
+      "age": "",
+      "id": 6
+    },
+    {
+      "username": "batman",
+      "password": "robin",
+      "age": "",
+      "id": 7
+    },
+    {
+      "username": "yoske",
+      "age": "32",
+      "id": 8
+    },
+    {
+      "username": "socketRabbit",
+      "password": "$2b$10$e1Tdf1bdxCj2MHvl.YepU.RafbygSorASIih87kwp6/88paB3xAsK",
+      "age": "312",
+      "id": 9
     }
   ]
 }
