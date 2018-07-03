@@ -6,10 +6,18 @@ const usersController_1 = require("../../services/users/usersController");
 const router = express.Router();
 router.get('/', usersController_1.default.getAllUsers);
 router.post('/', (req, res) => {
-    users_1.users.createUser(req.body)
-        .then((users) => {
-        res.json(users);
-    });
+    if (req.query.login === "true") {
+        users_1.users.authUser(req.body)
+            .then((result) => {
+            res.json(result);
+        });
+    }
+    else {
+        users_1.users.createUser(req.body)
+            .then((users) => {
+            res.json(users);
+        });
+    }
 });
 router.get('/:id', (req, res) => {
     res.send(`User fetched: ${req.params.id}`);

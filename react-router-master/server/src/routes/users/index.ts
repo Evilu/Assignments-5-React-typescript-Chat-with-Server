@@ -7,11 +7,20 @@ const router = express.Router();
 
 router.get('/', usersController.getAllUsers);
 
+
 router.post('/', (req, res) => {
-    users.createUser(req.body)
-        .then((users,)=> {
-        res.json(users);
-        })
+    if (req.query.login === "true") {
+       users.authUser(req.body)
+           .then((result)=>{
+               res.json(result);
+           })
+    }
+    else {
+        users.createUser(req.body)
+            .then((users,) => {
+                res.json(users);
+            })
+    }
 });
 
 router.get('/:id', (req, res) => {

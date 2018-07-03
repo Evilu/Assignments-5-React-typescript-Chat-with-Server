@@ -70,10 +70,12 @@ class App extends React.Component<{}, IAppstate> {
         this.setState({items:await treeApi.getTree()});
     }
 
-    auth = (user: IUser): boolean => {
+    auth =  async (user: IUser) => {
         console.log(user);
-        return user.username == 'batman' && user.password == 'robin';
+       return await StateStore.getInstance().authUser(user);
     };
+
+
 
     getIDfromElement = (element: any) => {
         this.setState({selected: {id: element.id, type: element.type}});

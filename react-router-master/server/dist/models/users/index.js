@@ -16,13 +16,10 @@ class userDataModel {
     writeToJson() {
         fs.writeFileSync(baseDir + '/users.json', JSON.stringify(this.data));
     }
-    getUsers() {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve(this.data.user);
-            }, 500);
-        });
+    async getUsers() {
+        return await (this.data.user);
     }
+    ;
     async createUser(user) {
         user.id = this.data.user[this.data.user.length - 1].id + 1;
         bcrypt.hash(user.password, saltRounds, async (err, hash) => {
@@ -33,6 +30,22 @@ class userDataModel {
         });
     }
     ;
+    authUser(user) {
+        return new Promise((resolve, reject) => {
+            const users = this.readFromJson();
+            const foundUser = users.user.find((user1) => {
+                return user1.username === user.username;
+            });
+            bcrypt.compare(user.password, foundUser.password, function (err, res) {
+                if (res == true) {
+                    resolve({ res });
+                }
+                else {
+                    reject({});
+                }
+            });
+        });
+    }
     async deleteUser(userId) {
         const userIndex = this.data.user.findIndex(u => u.id == userId);
         this.data.user.splice(userIndex, 1);

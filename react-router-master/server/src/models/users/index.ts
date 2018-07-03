@@ -21,23 +21,37 @@ class userDataModel {
         fs.writeFileSync(baseDir + '/users.json', JSON.stringify(this.data));
     }
 
-    getUsers() {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve(this.data.user);
-            }, 500);
-        });
-    }
+    async getUsers() {
+     return await (this.data.user)
+    };
 
-   async createUser(user) {
-       user.id = this.data.user[this.data.user.length - 1].id + 1;
-       bcrypt.hash(user.password, saltRounds, async (err:Error, hash:string) =>{
-           user.password = hash;
-           this.data.user.push(user);
-           await this.writeToJson();
-           return {name:user.name, id:user.id, age:user.age};
-       });
-   };
+
+    async createUser(user) {
+        user.id = this.data.user[this.data.user.length - 1].id + 1;
+        bcrypt.hash(user.password, saltRounds, async (err: Error, hash: string) => {
+            user.password = hash;
+            this.data.user.push(user);
+            await this.writeToJson();
+            return {name: user.name, id: user.id, age: user.age};
+        });
+    };
+
+    authUser(user){
+          return new Promise(async(resolve, reject)=>{
+              const users = await this.readFromJson();
+              const foundUser = users.user.find((user1)=>{
+                  return user1.username === user.username
+              })
+              bcrypt.compare(user.password, foundUser.password, function(err, res) {
+                  if (res == true) {
+                      resolve ({res})
+                  }
+                  else{
+                      reject({})
+                  }
+              });
+          })
+      }
 
 
     async deleteUser(userId) {

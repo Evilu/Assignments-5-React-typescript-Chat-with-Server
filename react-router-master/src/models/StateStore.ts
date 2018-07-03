@@ -3,6 +3,7 @@ import {IMessage} from "../models/Message";
 import groupsApi from "../api/groupsApi";
 import usersApi from "../api/userApi";
 
+
 interface IStateStore {
     state: {};
 
@@ -21,6 +22,8 @@ interface IStateStore {
     getGroups(): Promise<any[]>
 
     getUsers(): Promise<any[]>
+
+    authUser(user): Promise<boolean>
 
 }
 
@@ -62,6 +65,11 @@ class StateStore implements IStateStore {
         return this.messagesDB.getUserMessages(userId);
     }
 
+    public async authUser(user)  {
+       return await usersApi.authUser(user)
+
+    }
+
     static instance: IStateStore;
 
     static getInstance() {
@@ -77,6 +85,8 @@ export interface UserListState {
 
 
 }
+
+
 
 export interface IUser {
     username: string,

@@ -6,6 +6,10 @@ class UsersApi {
         return await this.get('/users');
     }
 
+    async authUser(user):Promise<boolean>{
+        return await this.post('/users?login=true',user)
+    }
+
      async createUser(user) {
         return await this.post('/users', user);
     }
@@ -24,15 +28,18 @@ class UsersApi {
             .then(res => res.json());
     }
 
-     post(url, body) {
-        return fetch(baseUrl + url, {
+     async post(url, body) :Promise<any>{
+         return await fetch(baseUrl + url, {
             method: 'POST',
             body: JSON.stringify(body),
             headers: {
                 'Content-Type': 'application/json'
             }
         })
-            .then(res => res.json());
+            .then((res) => {
+                debugger;
+                res.json()
+            });
     }
 
      del(url, body) {
