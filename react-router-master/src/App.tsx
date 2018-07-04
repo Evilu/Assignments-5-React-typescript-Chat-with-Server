@@ -13,9 +13,11 @@ import UsersList from "./components/usersList";
 import UserSignUp from "./components/UserSignUp";
 import GroupSignUp from './components/GroupSignUp';
 import treeApi from './api/treeApi'
+import * as io from 'socket.io-client';
 
-
-
+export const socket =io('http://localhost:4000',{
+    transports: ['websocket']
+});
 
 export enum alert {
     none,
@@ -81,6 +83,7 @@ class App extends React.Component<{}, IAppstate> {
     public onLoginSubmitHandler = async (user: IUser) => {
        let check = await StateStore.getInstance().authUser(user);
        if(check.result === true){
+           socket.emit('login',user.username );
            this.setState({
                loggedInUser:user,
                alert: alert.allGood,
