@@ -4,6 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const baseDir = path.join(__dirname.replace('dist' + path.sep, "src" + path.sep).replace("users", "lib"));
 const bcrypt = require("bcrypt");
+const errorOccure_1 = require("../../services/errors/errorOccure");
 const saltRounds = 10;
 class userDataModel {
     constructor() {
@@ -30,21 +31,17 @@ class userDataModel {
         });
     }
     ;
-    authUser(user) {
-        return new Promise((resolve, reject) => {
-            const users = this.readFromJson();
-            const foundUser = users.user.find((user1) => {
-                return user1.username === user.username;
-            });
-            bcrypt.compare(user.password, foundUser.password, function (err, res) {
-                if (res == true) {
-                    resolve({ res });
-                }
-                else {
-                    reject({});
-                }
-            });
+    async authUser(user) {
+        const users = await this.readFromJson();
+        const foundUser = users.user.find((user1) => {
+            return user1.username === user.username;
         });
+        if (foundUser) {
+            return await compare(user.password, foundUser.password);
+        }
+        else {
+            throw new errorOccure_1.ErrorOccure(404, "Bad Auth");
+        }
     }
     async deleteUser(userId) {
         const userIndex = this.data.user.findIndex(u => u.id == userId);
@@ -61,4 +58,13 @@ class userDataModel {
     }
 }
 exports.users = new userDataModel();
+function compare(plainPassword, hash) {
+    return new Promise((resolve, reject) => {
+        bcrypt.compare(plainPassword, hash, (err, res) => {
+            if (err)
+                reject(err);
+            resolve(res);
+        });
+    });
+}
 //# sourceMappingURL=index.js.map

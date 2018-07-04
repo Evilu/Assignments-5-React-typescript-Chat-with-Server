@@ -8,12 +8,15 @@ const router = express.Router();
 router.get('/', usersController.getAllUsers);
 
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     if (req.query.login === "true") {
-       users.authUser(req.body)
-           .then((result)=>{
-               res.json(result);
-           })
+        const  afterAuth =  await users.authUser(req.body);
+        if(afterAuth === true){
+            res.status(200).json({result :afterAuth});
+        }
+        else{
+            res.status(404).json({result :afterAuth});
+        }
     }
     else {
         users.createUser(req.body)

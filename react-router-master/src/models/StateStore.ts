@@ -23,7 +23,7 @@ interface IStateStore {
 
     getUsers(): Promise<any[]>
 
-    authUser(user): Promise<boolean>
+    authUser(IUser): Promise<any>
 
 }
 
@@ -65,8 +65,8 @@ class StateStore implements IStateStore {
         return this.messagesDB.getUserMessages(userId);
     }
 
-    public async authUser(user)  {
-       return await usersApi.authUser(user)
+    public async authUser(IUser)  {
+       return await usersApi.authUser(IUser)
 
     }
 

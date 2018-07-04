@@ -5,12 +5,15 @@ const users_1 = require("../../models/users");
 const usersController_1 = require("../../services/users/usersController");
 const router = express.Router();
 router.get('/', usersController_1.default.getAllUsers);
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     if (req.query.login === "true") {
-        users_1.users.authUser(req.body)
-            .then((result) => {
-            res.json(result);
-        });
+        const afterAuth = await users_1.users.authUser(req.body);
+        if (afterAuth === true) {
+            res.status(200).json({ result: afterAuth });
+        }
+        else {
+            res.status(404).json({ result: afterAuth });
+        }
     }
     else {
         users_1.users.createUser(req.body)

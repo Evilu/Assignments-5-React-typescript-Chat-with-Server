@@ -70,10 +70,6 @@ class App extends React.Component<{}, IAppstate> {
         this.setState({items:await treeApi.getTree()});
     }
 
-    auth =  async (user: IUser) => {
-        console.log(user);
-       return await StateStore.getInstance().authUser(user);
-    };
 
 
 
@@ -83,33 +79,32 @@ class App extends React.Component<{}, IAppstate> {
         this.setState({message: '', list: newList})
     };
 
-    onLoginSubmitHandler = (user: IUser) => {
-
-        if (this.auth(user)) {
-            this.setState({
-                loggedInUser: user,
-                loggedInGroup: user,
-                alert: alert.allGood,
-                approveUser: true
-            })
-        }
-
-        else {
-            if (this.state.counter === 2) {
-                this.setState({
-                    loggedInUser: null,
-                    alert: alert.locked
-                });
-            }
-            else {
-                this.setState((prev) => ({
-                    loggedInUser: null,
-                    alert: alert.credentials,
-                    counter: this.state.counter + 1
-                }));
-            }
-        }
-    };
+    public onLoginSubmitHandler = async (user: IUser) => {
+       let check = await StateStore.getInstance().authUser(user);
+       if(check.result === true){
+           this.setState({
+               loggedInUser:user,
+               loggedInGroup: user,
+               alert: alert.allGood,
+               approveUser: true
+           });
+       }
+        else{
+           if (this.state.counter === 2) {
+               this.setState({
+                   loggedInUser: null,
+                   alert: alert.locked
+               });
+           }
+           else {
+               this.setState((prev) => ({
+                   loggedInUser: null,
+                   alert: alert.credentials,
+                   counter: this.state.counter + 1
+               }));
+           }
+       }
+     };
 
     public submitHandler = (event: any) => {
         event.preventDefault();
@@ -144,7 +139,6 @@ class App extends React.Component<{}, IAppstate> {
 
     public loginRender = () => (this.state.approveUser ? <Redirect to={{pathname: '/chat'}}/> :
         <LoginModal loginStatus={this.state.alert} onSubmit={this.onLoginSubmitHandler}/>);
-
 
     render() {
         return (
