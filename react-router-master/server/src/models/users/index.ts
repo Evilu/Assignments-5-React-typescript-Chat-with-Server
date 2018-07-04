@@ -2,7 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 const baseDir = path.join(__dirname.replace('dist'+path.sep, "src"+path.sep).replace("users", "lib"));
 import * as bcrypt from 'bcrypt';
-import {ErrorOccure} from "../../services/errors/errorOccure";
+// import {ErrorOccure} from "../../services/errors/errorOccure";
 const saltRounds = 10;
 
 class userDataModel {
@@ -45,9 +45,7 @@ class userDataModel {
           if(foundUser){
               return await compare(user.password, foundUser.password)
           }
-        else{
-              throw new ErrorOccure(404, "Bad Auth");
-          }
+
     }
 
 

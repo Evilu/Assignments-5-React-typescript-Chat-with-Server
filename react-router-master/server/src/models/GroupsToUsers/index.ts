@@ -18,10 +18,11 @@ class groupInUserssData {
         fs.writeFileSync(path.join(baseDir,'/groupsToUsersMAP.json'), JSON.stringify(this.data));
     }
 
+
     getGroupstoUsers() {
         return new Promise((resolve) => {
             setTimeout(() => {
-                resolve(this.data.group);
+                resolve(this.data.GroupsToUsers);
             }, 500);
         });
     }
@@ -29,7 +30,7 @@ class groupInUserssData {
 
 
     async createGroupInUsers (GroupInUsers) {
-        this.data.group.push(GroupInUsers);
+        this.data.GroupsToUsers.push(GroupInUsers);
         await this.writeToJson();
         return GroupInUsers
     };
@@ -39,8 +40,8 @@ class groupInUserssData {
 
 
     async deleteGroupInUsers(groupId) {
-        const groupIndex = this.data.group.findIndex(g => g.id == groupId);
-        this.data.group.splice(groupIndex,1);
+        const groupIndex = this.data.GroupsToUsers.findIndex(g => g.id == groupId);
+        this.data.GroupsToUsers.splice(groupIndex,1);
         await this.writeToJson();
         return groupId
     };

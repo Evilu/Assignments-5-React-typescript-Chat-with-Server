@@ -16,6 +16,7 @@ import treeApi from './api/treeApi'
 
 
 
+
 export enum alert {
     none,
     allGood,
@@ -71,8 +72,6 @@ class App extends React.Component<{}, IAppstate> {
     }
 
 
-
-
     getIDfromElement = (element: any) => {
         this.setState({selected: {id: element.id, type: element.type}});
         const newList = StateStore.getInstance().getGroupMessages(this.state.selected!.id);
@@ -84,7 +83,6 @@ class App extends React.Component<{}, IAppstate> {
        if(check.result === true){
            this.setState({
                loggedInUser:user,
-               loggedInGroup: user,
                alert: alert.allGood,
                approveUser: true
            });

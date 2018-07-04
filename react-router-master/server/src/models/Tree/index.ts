@@ -90,4 +90,4 @@ class TreeBuild {
 
 export const tree = new TreeBuild();
 
-// console.log(JSON.stringify(tree.startPoint,null,4));
+

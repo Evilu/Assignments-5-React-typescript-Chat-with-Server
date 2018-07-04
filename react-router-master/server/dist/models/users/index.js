@@ -4,7 +4,6 @@ const fs = require("fs");
 const path = require("path");
 const baseDir = path.join(__dirname.replace('dist' + path.sep, "src" + path.sep).replace("users", "lib"));
 const bcrypt = require("bcrypt");
-const errorOccure_1 = require("../../services/errors/errorOccure");
 const saltRounds = 10;
 class userDataModel {
     constructor() {
@@ -38,9 +37,6 @@ class userDataModel {
         });
         if (foundUser) {
             return await compare(user.password, foundUser.password);
-        }
-        else {
-            throw new errorOccure_1.ErrorOccure(404, "Bad Auth");
         }
     }
     async deleteUser(userId) {

@@ -20,7 +20,7 @@ serverApp.use('/groups', groups_1.default);
 serverApp.use('/messages', messages_1.default);
 serverApp.use('/tree', Tree_1.default);
 serverApp.use('/groupToGroup', GroupsToGroups_1.default);
-serverApp.use('/groupToUserRouter', UsersToGroups_1.default);
+serverApp.use('/GroupsToUsers', UsersToGroups_1.default);
 let server = serverApp.listen(4000, function () {
     console.log('server is running on:' +
         'http://localhost:4000/');

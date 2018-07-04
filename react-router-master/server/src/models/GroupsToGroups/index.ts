@@ -21,26 +21,22 @@ class groupInGroupsData {
     getGroupstoGroups() {
         return new Promise((resolve) => {
             setTimeout(() => {
-                resolve(this.data.group);
+                resolve(this.data.GroupsToGroups);
             }, 500);
         });
     }
 
-
-
     async createGroupInGroup (GroupInGroup) {
-        this.data.group.push(GroupInGroup);
+        this.data.GroupsToGroups.push(GroupInGroup);
         await this.writeToJson();
         return GroupInGroup
     };
 
 
 
-
-
     async deleteGroupInGroup(groupId) {
-        const groupIndex = this.data.group.findIndex(g => g.id == groupId);
-        this.data.group.splice(groupIndex,1);
+        const groupIndex = this.data.GroupsToGroups.findIndex(g => g.id == groupId);
+        this.data.GroupsToGroups.splice(groupIndex,1);
         await this.writeToJson();
         return groupId
     };
