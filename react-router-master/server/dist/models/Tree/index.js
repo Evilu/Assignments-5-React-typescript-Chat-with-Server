@@ -62,5 +62,4 @@ class TreeBuild {
     }
 }
 exports.tree = new TreeBuild();
-// console.log(JSON.stringify(tree.startPoint,null,4));
 //# sourceMappingURL=index.js.map

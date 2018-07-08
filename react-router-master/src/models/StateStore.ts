@@ -57,7 +57,7 @@ class StateStore implements IStateStore {
     }
 
 
-    public getGroupMessages(groupId: string) {
+    public  getGroupMessages(groupId: string) {
         return this.messagesDB.getGroupMessages(groupId);
     }
 

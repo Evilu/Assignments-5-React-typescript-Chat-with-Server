@@ -4,6 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const baseDir = path.join(__dirname.replace('dist' + path.sep, "src" + path.sep).replace("users", "lib"));
 const bcrypt = require("bcrypt");
+// import {ErrorOccure} from "../../services/errors/errorOccure";
 const saltRounds = 10;
 class userDataModel {
     constructor() {

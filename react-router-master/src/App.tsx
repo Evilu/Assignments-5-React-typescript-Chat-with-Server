@@ -3,6 +3,7 @@ import "./App.css";
 import ChatTree from './components/ChatTree'
 import MessagesList from "./components/Messageslist";
 import {IUser} from "./Entities";
+// import {IMessage} from "./models/Message"
 import {Link, Route} from "react-router-dom";
 import LoginModal from "./components/LoginModal";
 import {Redirect, Switch} from "react-router";
@@ -27,7 +28,7 @@ export enum alert {
 }
 
 
-interface IAppstate {
+export interface IAppstate {
     message: string
     items: Iitem[],
     list?: string[],
@@ -36,7 +37,8 @@ interface IAppstate {
     alert: alert,
     counter: number,
     approveUser: boolean,
-    selected?: { id: string, type: string }
+    selected?: { id: string, type: string}
+
 
 
 
@@ -77,7 +79,8 @@ class App extends React.Component<{}, IAppstate> {
     getIDfromElement = (element: any) => {
         this.setState({selected: {id: element.id, type: element.type}});
         const newList = StateStore.getInstance().getGroupMessages(this.state.selected!.id);
-        this.setState({message: '', list: newList})
+        this.setState({message: '', list: newList});
+        socket.emit('join-group',this.state.loggedInUser.username,this.state.selected.id);
     };
 
     public onLoginSubmitHandler = async (user: IUser) => {
@@ -107,12 +110,14 @@ class App extends React.Component<{}, IAppstate> {
        }
      };
 
-    public submitHandler = (event: any) => {
+    public submitHandler = async (event: any) => {
         event.preventDefault();
         if (this.state.loggedInUser && this.state.selected && this.state.selected!.type === 'group') {
-            StateStore.getInstance().addMessageToGroup(this.state.selected!.id, new Message(this.state.message, new Date().toLocaleTimeString(), this.state.loggedInUser!.username));
+            socket.emit('msg', this.state.selected.id, this.state.message, this.state.loggedInUser.username);
+           await StateStore.getInstance().addMessageToGroup(this.state.selected!.id, new Message(this.state.message, new Date().toLocaleTimeString(), this.state.loggedInUser!.username));
             const newList = StateStore.getInstance().getGroupMessages(this.state.selected!.id);
-            this.setState({message: '', list: newList})
+            this.setState({message: '', list: newList});
+
         }
         if (this.state.loggedInUser && this.state.selected && this.state.selected!.type === 'user') {
             StateStore.getInstance().addMessageToUser(this.state.selected!.id, new Message(this.state.message, new Date().toLocaleTimeString(), this.state.loggedInUser!.username));
@@ -124,6 +129,7 @@ class App extends React.Component<{}, IAppstate> {
 
     public textChangeHandler = (event: any) => {
         this.setState({message: event.target.value});
+
     };
 
     public appRender = () => (
